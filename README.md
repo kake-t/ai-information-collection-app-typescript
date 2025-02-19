@@ -1,0 +1,1 @@
+# ai-information-collection-app-typescript
