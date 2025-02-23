@@ -9,7 +9,10 @@ interface EventHandlerResponse {
 	body: string;
 }
 
-export const handler = async (event: EventHandler, context: Context): Promise<EventHandlerResponse> => {
+export const handler = async (
+	event: EventHandler,
+	context: Context,
+): Promise<EventHandlerResponse> => {
 	// TODO implement
 	const response: EventHandlerResponse = {
 		statusCode: 200,
