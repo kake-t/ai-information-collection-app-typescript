@@ -1,28 +1,32 @@
 {
-  "name": "ai-information-collection-app-typescript",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kake-t/ai-information-collection-app-typescript.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/kake-t/ai-information-collection-app-typescript/issues"
-  },
-  "homepage": "https://github.com/kake-t/ai-information-collection-app-typescript#readme",
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@types/aws-lambda": "^8.10.147",
-    "@types/node": "^22.13.4",
+	"name": "ai-information-collection-app-typescript",
+	"version": "1.0.0",
+	"description": "",
+	"main": "src/infrastructure/lambda_handler.ts",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"prebuild": "rm -rf dist",
+		"build": "esbuild src/infrastructure/lambda_handler.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js",
+		"postbuild": "cd dist && zip -r index.zip index.js*",
+		"lambda-create-function": "make lambda-create-function",
+		"deploy": "make deploy"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kake-t/ai-information-collection-app-typescript.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "commonjs",
+	"bugs": {
+		"url": "https://github.com/kake-t/ai-information-collection-app-typescript/issues"
+	},
+	"homepage": "https://github.com/kake-t/ai-information-collection-app-typescript#readme",
+	"devDependencies": {
+		"@types/aws-lambda": "^8.10.147",
+		"@types/node": "^22.13.4",
 		"esbuild": "^0.25.0",
-    "typescript": "^5.7.3"
-  }
+		"typescript": "^5.7.3"
+	}
 }
