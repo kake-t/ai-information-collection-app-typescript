@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/kake-t/ai-information-collection-app-typescript#readme",
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@types/aws-lambda": "^8.10.147",
     "@types/node": "^22.13.4",
     "typescript": "^5.7.3"
