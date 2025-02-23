@@ -1,5 +1,10 @@
-import { describe, expect, test } from "@jest/globals";
+import { describe, expect, jest, test } from "@jest/globals";
 import { SendEmailRequest } from "../../../src/domain/entities/send_email";
+
+// 日付のモック
+jest.useFakeTimers();
+const mockDate = new Date("2022/08/30");
+jest.setSystemTime(mockDate);
 
 test("SendEmailRequest subject date is success", () => {
 	// arrange
@@ -9,5 +14,5 @@ test("SendEmailRequest subject date is success", () => {
 		"body content",
 	);
 	// act & assert
-	expect(sendEmailRequest.subject).toBe("2025-02-23のAIニュースです。");
+	expect(sendEmailRequest.subject).toBe("2022-08-30のAIニュースです。");
 });
