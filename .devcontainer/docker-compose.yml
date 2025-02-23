@@ -1,0 +1,10 @@
+services:
+  dev-ai-information-collection-app-typescript:
+    container_name: ai-information-collection-app-typescript
+    build:
+      context: ../
+      dockerfile: .devcontainer/Dockerfile
+    tty: true
+    working_dir: /var/task
+    volumes:
+      - ../:/var/task/

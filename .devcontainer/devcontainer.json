@@ -1,0 +1,22 @@
+{
+	"name": "Development ai-information-collection-app-typescript",
+	"dockerComposeFile": "./docker-compose.yml",
+	"workspaceFolder": "/var/task",
+	"service": "dev-ai-information-collection-app-typescript",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"terminal.integrated.shell.linux": "/bin/bash",
+				"editor.formatOnSave": true,
+				"[javascript]": {
+					"editor.defaultFormatter": "biomejs.biome"
+				}
+			},
+			"extensions": [
+				"biomejs.biome",
+				"ms-vscode.vscode-typescript-next",
+				"ms-azuretools.vscode-docker"
+			]
+		}
+	}
+}
