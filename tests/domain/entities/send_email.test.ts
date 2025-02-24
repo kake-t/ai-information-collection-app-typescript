@@ -6,13 +6,15 @@ jest.useFakeTimers();
 const mockDate = new Date("2022/08/30");
 jest.setSystemTime(mockDate);
 
-test("SendEmailRequest subject date is success", () => {
-	// arrange
-	const sendEmailRequest = new SendEmailRequest(
-		"source@source.com",
-		"distination@distinasion.com",
-		"body content",
-	);
-	// act & assert
-	expect(sendEmailRequest.subject).toBe("2022-08-30のAIニュースです。");
+describe("SendEmailRequest", () => {
+	test("subject date is success", () => {
+		// arrange
+		const sendEmailRequest = new SendEmailRequest(
+			"source@source.com",
+			"distination@distinasion.com",
+			"body content",
+		);
+		// act & assert
+		expect(sendEmailRequest.subject).toBe("2022-08-30のAIニュースです。");
+	});
 });
