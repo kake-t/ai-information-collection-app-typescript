@@ -2,11 +2,9 @@ import { DateTime } from "luxon";
 
 export class SendEmailRequest {
 	constructor(
-		public source: string,
-		public destination: string,
-		public body: string,
-		public subject = `${DateTime.now()
-			.setZone("Asia/Tokyo")
-			.toFormat("yyyy-MM-dd")}のAIニュースです。`,
+		readonly source: string,
+		readonly destination: string,
+		readonly body: string,
+		readonly subject = `${DateTime.now().setZone("Asia/Tokyo").toFormat("yyyy-MM-dd")}のAIニュースです。`,
 	) {}
 }
