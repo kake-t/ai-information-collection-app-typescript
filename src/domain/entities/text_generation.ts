@@ -1,5 +1,5 @@
-const DEFAULT_MAX_TOKENS = 1000;
-const DEFAULT_TEMPERATURE = 0.7;
+export const DEFAULT_MAX_TOKENS = 1000;
+export const DEFAULT_TEMPERATURE = 0.7;
 
 export class TextGenerationRequest {
 	constructor(
