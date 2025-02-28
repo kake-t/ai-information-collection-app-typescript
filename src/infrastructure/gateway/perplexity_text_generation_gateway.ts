@@ -53,6 +53,13 @@ class UsageInformationIsNoneError extends Error {
 	}
 }
 
+class PerplexityAPIError extends Error {
+	constructor() {
+		super("Perplexity API error: Response is null");
+		this.name = "PerplexityAPIError";
+	}
+}
+
 export class PerplexityTextGenerationGateway implements TextGenerationGateway {
 	private static readonly BASE_URL = "https://api.perplexity.ai/chat/completions";
 	private static readonly MODEL = "sonar";
@@ -71,6 +78,9 @@ export class PerplexityTextGenerationGateway implements TextGenerationGateway {
 				temperature: request.temperature,
 			}),
 		});
+		if (response === null || !response.ok) {
+			throw new PerplexityAPIError();
+		}
 		const data = (await response.json()) as PerplexityResponse;
 
 		if (data.choices[0].message.content === "") {
