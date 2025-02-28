@@ -64,7 +64,7 @@ export class PerplexityTextGenerationGateway implements TextGenerationGateway {
 	private static readonly BASE_URL = "https://api.perplexity.ai/chat/completions";
 	private static readonly MODEL = "sonar";
 
-	async generate_text(request: TextGenerationRequest): Promise<TextGenerationResponse> {
+	async generateText(request: TextGenerationRequest): Promise<TextGenerationResponse> {
 		const response = await fetch(PerplexityTextGenerationGateway.BASE_URL, {
 			method: "POST",
 			headers: {

@@ -7,7 +7,7 @@ export class SesSendEmailGateway implements SendEmailGateway {
 	private static readonly CHARSET = "UTF-8";
 
 	constructor(readonly ses: SESClient) {}
-	async send_email(request: SendEmailRequest): Promise<void> {
+	async sendEmail(request: SendEmailRequest): Promise<void> {
 		const source = request.source;
 		const destination = request.destination;
 		const subject = request.subject;
