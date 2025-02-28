@@ -60,8 +60,6 @@ export const handler = async (event: LambdaEvent, _context: unknown): Promise<La
 	} catch (error) {
 		logger.error(error instanceof Error ? error.message : String(error), {
 			error,
-			name: error instanceof Error ? error.name : "UnknownError",
-			stack: error instanceof Error ? error.stack : "No stack trace available",
 		});
 		return {
 			statusCode: 500,
