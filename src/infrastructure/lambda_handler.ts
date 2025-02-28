@@ -1,14 +1,13 @@
 import * as dotenv from "dotenv";
 dotenv.config();
-
 import { DEFAULT_MAX_TOKENS, DEFAULT_TEMPERATURE } from "../domain/entities/text_generation";
 import { sesClient } from "../infrastructure/aws_client";
 import { config } from "../infrastructure/config";
 import { PerplexityTextGenerationGateway } from "../infrastructure/gateway/perplexity_text_generation_gateway";
 import { SesSendEmailGateway } from "../infrastructure/gateway/ses_send_email_gateway";
+import logger from "../logger";
 import { SendEmailUsecase } from "../usecase/send_email_usecase";
 import { TextGenerationUsecase } from "../usecase/text_generation_usecase";
-
 interface LambdaEvent {
 	prompt?: string;
 	max_tokens?: number;
@@ -59,6 +58,11 @@ export const handler = async (event: LambdaEvent, _context: unknown): Promise<La
 			},
 		};
 	} catch (error) {
+		logger.error(error instanceof Error ? error.message : String(error), {
+			error,
+			name: error instanceof Error ? error.name : "UnknownError",
+			stack: error instanceof Error ? error.stack : "No stack trace available",
+		});
 		return {
 			statusCode: 500,
 			body: { error: error instanceof Error ? error.message : String(error) },
