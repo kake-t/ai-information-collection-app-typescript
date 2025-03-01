@@ -26,7 +26,7 @@ interface LambdaResponse {
 export const handler = async (event: LambdaEvent, _context: unknown): Promise<LambdaResponse> => {
 	try {
 		const prompt = event.prompt;
-		const max_tokens = event.max_tokens ?? DEFAULT_MAX_TOKENS;
+		const maxTokens = event.max_tokens ?? DEFAULT_MAX_TOKENS;
 		const temperature = event.temperature ?? DEFAULT_TEMPERATURE;
 
 		if (!prompt) {
@@ -36,25 +36,25 @@ export const handler = async (event: LambdaEvent, _context: unknown): Promise<La
 			};
 		}
 
-		const email_source = config.email.source;
-		const email_destination = config.email.destination;
+		const emailSource = config.email.source;
+		const emailDestination = config.email.destination;
 
 		const text_generation_gateway = new PerplexityTextGenerationGateway();
 		const usecase = new TextGenerationUsecase(text_generation_gateway);
 		// テキスト生成の実行
-		const text_generation_result = await usecase.generate(prompt, max_tokens, temperature);
-		const generated_text = text_generation_result.generated_text;
+		const text_generation_result = await usecase.generate(prompt, maxTokens, temperature);
+		const generatedText = text_generation_result.generatedText;
 
 		const email_gateway = new SesSendEmailGateway(sesClient(config.aws.region));
 		const send_email_usecase = new SendEmailUsecase(email_gateway);
 		// email送信
-		await send_email_usecase.sendEmail(email_source, email_destination, generated_text);
+		await send_email_usecase.sendEmail(emailSource, emailDestination, generatedText);
 
 		return {
 			statusCode: 200,
 			body: {
-				generated_text,
-				token_count: text_generation_result.token_count,
+				generated_text: generatedText,
+				token_count: text_generation_result.tokenCount,
 			},
 		};
 	} catch (error) {

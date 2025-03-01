@@ -10,6 +10,6 @@ export class SendEmailUsecase {
 
 	async sendEmail(source: string, destination: string, generatedText: string): Promise<void> {
 		const request = new SendEmailRequest(source, destination, generatedText);
-		return this._sendEmailGateway.send_email(request);
+		return this._sendEmailGateway.sendEmail(request);
 	}
 }

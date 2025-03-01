@@ -12,7 +12,7 @@ describe("PerplexityTextGenerationGateway", () => {
 
 		// act & assert
 		const response = await perplexityTextGenerationGateway.generateText(textGenerationRequest);
-		expect(typeof response.generated_text).toBe("string");
-		expect(response.generated_text.length).toBeGreaterThan(0);
+		expect(typeof response.generatedText).toBe("string");
+		expect(response.generatedText.length).toBeGreaterThan(0);
 	});
 });

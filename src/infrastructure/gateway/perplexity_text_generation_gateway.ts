@@ -104,7 +104,7 @@ export class PerplexityTextGenerationGateway implements TextGenerationGateway {
 						content: request.prompt,
 					},
 				],
-				max_tokens: request.max_tokens,
+				max_tokens: request.maxTokens,
 				temperature: request.temperature,
 			}),
 		});
@@ -125,8 +125,8 @@ export class PerplexityTextGenerationGateway implements TextGenerationGateway {
 		}
 
 		const textGenerationResponse: TextGenerationResponse = {
-			generated_text: data.choices[0].message.content,
-			token_count: data.usage.total_tokens,
+			generatedText: data.choices[0].message.content,
+			tokenCount: data.usage.total_tokens,
 		};
 		return textGenerationResponse;
 	}

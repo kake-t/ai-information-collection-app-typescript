@@ -15,6 +15,6 @@ export class TextGenerationUsecase {
 		temperature: number,
 	): Promise<TextGenerationResponse> {
 		const request = new TextGenerationRequest(prompt, maxTokens, temperature);
-		return this._textGenerationGateway.generate_text(request);
+		return this._textGenerationGateway.generateText(request);
 	}
 }
