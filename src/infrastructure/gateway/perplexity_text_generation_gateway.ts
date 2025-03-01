@@ -81,12 +81,16 @@ export class PerplexityTextGenerationGateway implements TextGenerationGateway {
 	private static readonly MODEL = "sonar";
 
 	async generateText(request: TextGenerationRequest): Promise<TextGenerationResponse> {
+		const apiKey = process.env.PERPLEXITY_API_KEY;
+		if (!apiKey) {
+			throw new Error("Perplexity API key is not set");
+		}
 		const response = await fetch(PerplexityTextGenerationGateway.BASE_URL, {
 			method: "POST",
 			headers: {
 				accept: "application/json",
 				"Content-Type": "application/json",
-				Authorization: `Bearer ${process.env.PERPLEXITY_API_KEY}`,
+				Authorization: `Bearer ${apiKey}`,
 			},
 			body: JSON.stringify({
 				model: PerplexityTextGenerationGateway.MODEL,
