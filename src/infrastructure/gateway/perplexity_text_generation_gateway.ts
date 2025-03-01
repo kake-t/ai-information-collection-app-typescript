@@ -53,9 +53,13 @@ class UsageInformationIsNoneError extends Error {
 	}
 }
 
+/**
+ * Perplexity APIエラー
+ * @extends Error
+ */
 class PerplexityAPIError extends Error {
 	constructor() {
-		super("Perplexity API error: Response is null");
+		super("Perplexity API error: Response is failed");
 		this.name = "PerplexityAPIError";
 	}
 }
@@ -68,17 +72,27 @@ export class PerplexityTextGenerationGateway implements TextGenerationGateway {
 		const response = await fetch(PerplexityTextGenerationGateway.BASE_URL, {
 			method: "POST",
 			headers: {
+				accept: "application/json",
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${process.env.PERPLEXITY_API_KEY}`,
 			},
 			body: JSON.stringify({
 				model: PerplexityTextGenerationGateway.MODEL,
-				prompt: request.prompt,
+				messages: [
+					{
+						role: "system",
+						content: "あなたはAIニュースのキャスターです。",
+					},
+					{
+						role: "user",
+						content: request.prompt,
+					},
+				],
 				max_tokens: request.max_tokens,
 				temperature: request.temperature,
 			}),
 		});
-		if (response === null || !response.ok) {
+		if (!response.ok) {
 			throw new PerplexityAPIError();
 		}
 		const data = (await response.json()) as PerplexityResponse;
