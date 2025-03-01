@@ -1,5 +1,11 @@
 # ai-information-collection-app-typescript
 
+## 概要
+
+Python でかかれた以下のコードを TypeScript に置き換えたアプリケーションです。
+
+[元のリポジトリ](https://github.com/kake-t/ai-information-collection-app/tree/main)
+
 ## デプロイ
 
 ```sh
