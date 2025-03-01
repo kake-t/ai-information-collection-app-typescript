@@ -11,6 +11,7 @@ describe("PerplexityTextGenerationGateway", () => {
 		const textGenerationRequest = new TextGenerationRequest("AIニュースを生成してください");
 
 		// act & assert
+		// NOTE: 環境によってはテストがタイムアウトする
 		const response = await perplexityTextGenerationGateway.generateText(textGenerationRequest);
 		expect(typeof response.generatedText).toBe("string");
 		expect(response.generatedText.length).toBeGreaterThan(0);
